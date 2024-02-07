@@ -10,7 +10,7 @@ import 'package:flutter_dialogs/src/popup_data.dart';
 import 'package:flutter_dialogs/src/popup_service.dart';
 
 class PopUpParent extends StatefulWidget {
-  const PopUpParent({required this.child, Key? key}) : super(key: key);
+  const PopUpParent({required this.child, super.key});
 
   final Widget child;
 
@@ -26,7 +26,7 @@ class PopUpParentState extends State<PopUpParent> {
   final Queue<PopUpData> _popUpQueue = Queue();
 
   void displayPopUp(PopUpData popUp) {
-    if (_showPopUp == true) {
+    if (_showPopUp) {
       _popUpQueue.add(popUp);
       return;
     }
@@ -62,33 +62,31 @@ class PopUpParentState extends State<PopUpParent> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        widget.child,
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height -
-              MediaQuery.of(context).viewInsets.bottom,
-          alignment: Alignment.bottomCenter,
-          child: AnimatedCrossFade(
-            firstChild: SizedBox(
-              width: MediaQuery.of(context).size.width,
+  Widget build(BuildContext context) => Stack(
+        children: [
+          widget.child,
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height -
+                MediaQuery.of(context).viewInsets.bottom,
+            alignment: Alignment.bottomCenter,
+            child: AnimatedCrossFade(
+              firstChild: SizedBox(
+                width: MediaQuery.of(context).size.width,
+              ),
+              secondChild: _popUp?.custom ??
+                  PopUp(
+                    popUpData: _popUp ?? PopUpData(const Duration(seconds: 3)),
+                    onTap: () {
+                      _closePopUp(_popUpId);
+                    },
+                  ),
+              crossFadeState: _showPopUp
+                  ? CrossFadeState.showSecond
+                  : CrossFadeState.showFirst,
+              duration: const Duration(milliseconds: 250),
             ),
-            secondChild: _popUp?.custom ??
-                PopUp(
-                  popUpData: _popUp ?? PopUpData(const Duration(seconds: 3)),
-                  onTap: () {
-                    _closePopUp(_popUpId);
-                  },
-                ),
-            crossFadeState: _showPopUp
-                ? CrossFadeState.showSecond
-                : CrossFadeState.showFirst,
-            duration: const Duration(milliseconds: 250),
           ),
-        ),
-      ],
-    );
-  }
+        ],
+      );
 }

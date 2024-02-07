@@ -8,7 +8,7 @@ import 'package:flutter_dialogs/src/popup_parent.dart';
 
 class PopUpService {
   static PopUpService? _instance;
-  static PopUpService get instance => _instance ??= PopUpService();
+  static final PopUpService instance = _instance ??= PopUpService();
 
   late PopUpParentState currentState;
 
@@ -19,22 +19,26 @@ class PopUpService {
     Color? backgroundColor,
     Color? textColor,
   }) {
-    currentState.displayPopUp(PopUpData(
-      duration,
-      text: text,
-      icon: icon,
-      backgroundColor: backgroundColor,
-      textColor: textColor,
-    ));
+    currentState.displayPopUp(
+      PopUpData(
+        duration,
+        text: text,
+        icon: icon,
+        backgroundColor: backgroundColor,
+        textColor: textColor,
+      ),
+    );
   }
 
   void showCustom(
     Widget custom, {
     Duration duration = const Duration(seconds: 3),
   }) {
-    currentState.displayPopUp(PopUpData(
-      duration,
-      custom: custom,
-    ));
+    currentState.displayPopUp(
+      PopUpData(
+        duration,
+        custom: custom,
+      ),
+    );
   }
 }

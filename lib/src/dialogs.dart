@@ -6,7 +6,7 @@ import 'package:flutter/material.dart' as m;
 
 class DialogService {
   static DialogService? _instance;
-  static DialogService get instance => _instance ??= DialogService();
+  static final DialogService instance = _instance ??= DialogService();
 
   Future<T?> showDialog<T>({
     required m.BuildContext context,
@@ -17,16 +17,14 @@ class DialogService {
     bool useSafeArea = false,
     bool useRootNavigator = true,
     m.RouteSettings? routeSettings,
-  }) {
-    return m.showDialog(
+  }) =>
+      m.showDialog(
         context: context,
         barrierDismissible: barrierDismissible,
         barrierColor: barrierColor,
         barrierLabel: barrierLabel,
         useSafeArea: useSafeArea,
         useRootNavigator: useRootNavigator,
-        builder: (ctx) {
-          return m.Builder(builder: builder);
-        });
-  }
+        builder: (ctx) => m.Builder(builder: builder),
+      );
 }

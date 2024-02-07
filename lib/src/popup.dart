@@ -9,16 +9,17 @@ class PopUp extends StatelessWidget {
   const PopUp({
     required this.popUpData,
     this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final void Function()? onTap;
   final PopUpData popUpData;
 
   @override
   Widget build(BuildContext context) {
-    var style = Theme.of(context).textTheme.bodyText1?.copyWith(
-          color: popUpData.textColor ?? Theme.of(context).backgroundColor,
+    var style = Theme.of(context).textTheme.bodyLarge?.copyWith(
+          color:
+              popUpData.textColor ?? Theme.of(context).colorScheme.background,
           fontWeight: FontWeight.w500,
           fontSize: 14,
           height: 1.571,
