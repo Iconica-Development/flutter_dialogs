@@ -2,6 +2,21 @@
 
 Flutter service package for showing popups and dialogs in your app
 
+## Features
+
+- Customizable dialog styles
+- Support for different types of dialogs (alert, confirmation, input)
+- Easy integration with Flutter projects
+- Ability to add custom actions and buttons to dialogs
+- Support for dialog animations and transitions
+- Localization and internationalization support
+- Accessibility features for dialogs
+- Theming options for dialogs
+
+## Example
+
+See [Example Code](example/lib/main.dart) for more info.
+
 ## Issues
 
 Please file any issues, bugs or feature request as an issue on our [GitHub](https://github.com/Iconica-Development/flutter_dialogs/issues) page. Commercial support is available if you need help with integration with your app or services. You can contact us at [support@iconica.nl](mailto:support@iconica.nl).
