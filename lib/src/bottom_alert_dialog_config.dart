@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 enum ButtonType {
   primary,
@@ -27,8 +27,8 @@ class BottomAlertDialogConfig extends InheritedWidget {
     required super.child,
     ButtonBuilder? buttonBuilder,
     CloseButtonBuilder? closeButtonBuilder,
-    this.yesText = 'Yes',
-    this.noText = 'No',
+    this.yesText = "Yes",
+    this.noText = "No",
     this.backgroundColor,
     super.key,
   })  : _buttonBuilder = buttonBuilder,
@@ -54,9 +54,9 @@ class BottomAlertDialogConfig extends InheritedWidget {
             return ElevatedButton(
               style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all(theme.colorScheme.primary),
-                foregroundColor: MaterialStateProperty.all(Colors.black),
-                shape: MaterialStateProperty.all(
+                    WidgetStateProperty.all(theme.colorScheme.primary),
+                foregroundColor: WidgetStateProperty.all(Colors.black),
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                     side: BorderSide(color: theme.colorScheme.primary),
@@ -69,9 +69,9 @@ class BottomAlertDialogConfig extends InheritedWidget {
           case ButtonType.secondary:
             return ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.white),
-                foregroundColor: MaterialStateProperty.all(Colors.black),
-                shape: MaterialStateProperty.all(
+                backgroundColor: WidgetStateProperty.all(Colors.white),
+                foregroundColor: WidgetStateProperty.all(Colors.black),
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                     side: BorderSide(color: theme.colorScheme.primary),
@@ -84,10 +84,10 @@ class BottomAlertDialogConfig extends InheritedWidget {
           case ButtonType.tertiary:
             return ElevatedButton(
               style: ButtonStyle(
-                shadowColor: MaterialStateProperty.all(Colors.transparent),
-                backgroundColor: MaterialStateProperty.all(Colors.white),
-                foregroundColor: MaterialStateProperty.all(Colors.black),
-                shape: MaterialStateProperty.all(
+                shadowColor: WidgetStateProperty.all(Colors.transparent),
+                backgroundColor: WidgetStateProperty.all(Colors.white),
+                foregroundColor: WidgetStateProperty.all(Colors.black),
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                     side: const BorderSide(color: Colors.white),
@@ -102,21 +102,19 @@ class BottomAlertDialogConfig extends InheritedWidget {
 
   CloseButtonBuilder get closeButtonBuilder =>
       _closeButtonBuilder ??
-      (context, {required onPressed}) {
-        return IconButton(
-          onPressed: onPressed,
-          icon: const Icon(
-            Icons.close,
-            size: 25,
-            color: Colors.black,
-          ),
-        );
-      };
+      (context, {required onPressed}) => IconButton(
+            onPressed: onPressed,
+            icon: const Icon(
+              Icons.close,
+              size: 25,
+              color: Colors.black,
+            ),
+          );
 
   static BottomAlertDialogConfig of(BuildContext context) {
     var result =
         context.dependOnInheritedWidgetOfExactType<BottomAlertDialogConfig>();
-    assert(result != null, 'No BottomAlertDialogConfig found in context');
+    assert(result != null, "No BottomAlertDialogConfig found in context");
     return result!;
   }
 

@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter/material.dart';
-import 'package:flutter_dialogs/src/popup_data.dart';
+import "package:flutter/material.dart";
+import "package:flutter_dialogs/src/popup_data.dart";
 
 class PopUp extends StatelessWidget {
   const PopUp({
@@ -18,8 +18,7 @@ class PopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var style = Theme.of(context).textTheme.bodyLarge?.copyWith(
-          color:
-              popUpData.textColor ?? Theme.of(context).colorScheme.background,
+          color: popUpData.textColor ?? Theme.of(context).colorScheme.surface,
           fontWeight: FontWeight.w500,
           fontSize: 14,
           height: 1.571,
@@ -48,7 +47,7 @@ class PopUp extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 20, bottom: 5),
                 child: Text(
-                  popUpData.text ?? '',
+                  popUpData.text ?? "",
                   style: style,
                 ),
               ),
