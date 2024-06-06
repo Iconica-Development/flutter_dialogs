@@ -2,16 +2,16 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter/material.dart';
-import 'package:flutter_dialogs/src/bottom_alert_dialog_config.dart';
+import "package:flutter/material.dart";
+import "package:flutter_dialogs/src/bottom_alert_dialog_config.dart";
 
 class BottomAlertDialogAction extends StatelessWidget {
   const BottomAlertDialogAction({
     required this.text,
     required this.onPressed,
     this.buttonType = ButtonType.tertiary,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final String text;
   final ButtonType buttonType;
   final VoidCallback onPressed;
@@ -21,9 +21,9 @@ class BottomAlertDialogAction extends StatelessWidget {
     var config = BottomAlertDialogConfig.of(context);
     var buttonBuilder = config.buttonBuilder;
     var translatedText = text;
-    if (text == 'shell.alertdialog.button.yes') {
+    if (text == "shell.alertdialog.button.yes") {
       translatedText = config.yesText;
-    } else if (text == 'shell.alertdialog.button.no') {
+    } else if (text == "shell.alertdialog.button.no") {
       translatedText = config.noText;
     }
     return buttonBuilder.call(
@@ -41,14 +41,13 @@ class BottomAlertDialog extends StatelessWidget {
     required List<Widget> buttons,
     List<BottomAlertDialogAction>? actions,
     bool? closeButton,
-  }) {
-    return BottomAlertDialog._(
-      closeButton: closeButton,
-      buttons: buttons,
-      actions: actions,
-      body: (_) => body,
-    );
-  }
+  }) =>
+      BottomAlertDialog._(
+        closeButton: closeButton,
+        buttons: buttons,
+        actions: actions,
+        body: (_) => body,
+      );
 
   factory BottomAlertDialog.singleButtonIcon({
     required Widget title,
@@ -58,21 +57,20 @@ class BottomAlertDialog extends StatelessWidget {
     required VoidCallback onPressed,
     ButtonType buttonType = ButtonType.tertiary,
     bool? closeButton,
-  }) {
-    return BottomAlertDialog.icon(
-      closeButton: closeButton,
-      title: title,
-      icon: icon,
-      body: body,
-      buttons: [
-        BottomAlertDialogAction(
-          text: buttonText,
-          buttonType: buttonType,
-          onPressed: onPressed,
-        ),
-      ],
-    );
-  }
+  }) =>
+      BottomAlertDialog.icon(
+        closeButton: closeButton,
+        title: title,
+        icon: icon,
+        body: body,
+        buttons: [
+          BottomAlertDialogAction(
+            text: buttonText,
+            buttonType: buttonType,
+            onPressed: onPressed,
+          ),
+        ],
+      );
 
   factory BottomAlertDialog.yesOrNoIcon({
     required Widget title,
@@ -83,15 +81,14 @@ class BottomAlertDialog extends StatelessWidget {
     bool focusYes = true,
     bool otherSecondary = false,
     bool? closeButton,
-  }) {
-    return BottomAlertDialog.icon(
-      closeButton: closeButton,
-      title: title,
-      body: body,
-      icon: icon,
-      buttons: _getYesNoDialogButtons(focusYes, otherSecondary, onYes, onNo),
-    );
-  }
+  }) =>
+      BottomAlertDialog.icon(
+        closeButton: closeButton,
+        title: title,
+        body: body,
+        icon: icon,
+        buttons: _getYesNoDialogButtons(focusYes, otherSecondary, onYes, onNo),
+      );
 
   factory BottomAlertDialog.yesOrNo({
     required Widget title,
@@ -101,15 +98,14 @@ class BottomAlertDialog extends StatelessWidget {
     bool focusYes = true,
     bool otherSecondary = false,
     bool? closeButton,
-  }) {
-    return BottomAlertDialog.multiButton(
-      closeButton: closeButton,
-      title: title,
-      body: body,
-      buttons: const [],
-      actions: _getYesNoDialogButtons(focusYes, otherSecondary, onYes, onNo),
-    );
-  }
+  }) =>
+      BottomAlertDialog.multiButton(
+        closeButton: closeButton,
+        title: title,
+        body: body,
+        buttons: const [],
+        actions: _getYesNoDialogButtons(focusYes, otherSecondary, onYes, onNo),
+      );
 
   factory BottomAlertDialog.icon({
     required Widget title,
@@ -118,26 +114,25 @@ class BottomAlertDialog extends StatelessWidget {
     required List<Widget> buttons,
     List<BottomAlertDialogAction>? actions,
     bool? closeButton,
-  }) {
-    return BottomAlertDialog._(
-      closeButton: closeButton,
-      buttons: buttons,
-      actions: actions,
-      body: (context) => Column(
-        children: [
-          icon,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: title,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            child: body,
-          ),
-        ],
-      ),
-    );
-  }
+  }) =>
+      BottomAlertDialog._(
+        closeButton: closeButton,
+        buttons: buttons,
+        actions: actions,
+        body: (context) => Column(
+          children: [
+            icon,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: title,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+              child: body,
+            ),
+          ],
+        ),
+      );
 
   factory BottomAlertDialog.multiButton({
     required Widget title,
@@ -145,27 +140,26 @@ class BottomAlertDialog extends StatelessWidget {
     required List<BottomAlertDialogAction> buttons,
     List<BottomAlertDialogAction>? actions,
     bool? closeButton,
-  }) {
-    return BottomAlertDialog._(
-      closeButton: closeButton,
-      buttons: buttons,
-      actions: actions,
-      body: (context) => Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
+  }) =>
+      BottomAlertDialog._(
+        closeButton: closeButton,
+        buttons: buttons,
+        actions: actions,
+        body: (context) => Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              child: title,
             ),
-            child: title,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            child: body,
-          ),
-        ],
-      ),
-    );
-  }
+            Padding(
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+              child: body,
+            ),
+          ],
+        ),
+      );
   factory BottomAlertDialog.singleButton({
     required Widget title,
     required Widget body,
@@ -173,20 +167,19 @@ class BottomAlertDialog extends StatelessWidget {
     required VoidCallback onPressed,
     ButtonType buttonType = ButtonType.tertiary,
     bool? closeButton,
-  }) {
-    return BottomAlertDialog.multiButton(
-      closeButton: closeButton,
-      title: title,
-      body: body,
-      buttons: [
-        BottomAlertDialogAction(
-          text: buttonText,
-          onPressed: onPressed,
-          buttonType: buttonType,
-        ),
-      ],
-    );
-  }
+  }) =>
+      BottomAlertDialog.multiButton(
+        closeButton: closeButton,
+        title: title,
+        body: body,
+        buttons: [
+          BottomAlertDialogAction(
+            text: buttonText,
+            onPressed: onPressed,
+            buttonType: buttonType,
+          ),
+        ],
+      );
   const BottomAlertDialog._({
     required this.buttons,
     required this.body,
@@ -203,34 +196,33 @@ class BottomAlertDialog extends StatelessWidget {
     bool otherSecondary,
     VoidCallback onYes,
     VoidCallback onNo,
-  ) {
-    return <BottomAlertDialogAction>[
-      if (focusYes) ...[
+  ) =>
+      <BottomAlertDialogAction>[
+        if (focusYes) ...[
+          BottomAlertDialogAction(
+            text: "shell.alertdialog.button.no",
+            buttonType:
+                otherSecondary ? ButtonType.secondary : ButtonType.tertiary,
+            onPressed: onNo,
+          ),
+        ],
         BottomAlertDialogAction(
-          text: 'shell.alertdialog.button.no',
-          buttonType:
-              otherSecondary ? ButtonType.secondary : ButtonType.tertiary,
-          onPressed: onNo,
+          text: "shell.alertdialog.button.yes",
+          buttonType: focusYes
+              ? ButtonType.primary
+              : otherSecondary
+                  ? ButtonType.secondary
+                  : ButtonType.tertiary,
+          onPressed: onYes,
         ),
-      ],
-      BottomAlertDialogAction(
-        text: 'shell.alertdialog.button.yes',
-        buttonType: focusYes
-            ? ButtonType.primary
-            : otherSecondary
-                ? ButtonType.secondary
-                : ButtonType.tertiary,
-        onPressed: onYes,
-      ),
-      if (!focusYes) ...[
-        BottomAlertDialogAction(
-          text: 'shell.alertdialog.button.no',
-          buttonType: ButtonType.primary,
-          onPressed: onNo,
-        ),
-      ],
-    ];
-  }
+        if (!focusYes) ...[
+          BottomAlertDialogAction(
+            text: "shell.alertdialog.button.no",
+            buttonType: ButtonType.primary,
+            onPressed: onNo,
+          ),
+        ],
+      ];
 
   @override
   Widget build(BuildContext context) {

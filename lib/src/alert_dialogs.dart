@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class AlertDialogAction {
   AlertDialogAction({
@@ -256,8 +256,8 @@ class IconicaAlertDialog extends StatelessWidget {
     bool otherSecondary,
     VoidCallback onYes,
     VoidCallback onNo, {
-    String no = 'No',
-    String yes = 'Yes',
+    String no = "No",
+    String yes = "Yes",
   }) =>
       <AlertDialogAction>[
         if (focusYes) ...[

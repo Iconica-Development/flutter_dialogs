@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter/material.dart' as m;
+import "package:flutter/material.dart" as m;
 
 class DialogService {
   static DialogService? _instance;

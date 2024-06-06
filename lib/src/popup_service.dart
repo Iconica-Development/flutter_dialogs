@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:flutter/material.dart';
-import 'package:flutter_dialogs/src/popup_data.dart';
-import 'package:flutter_dialogs/src/popup_parent.dart';
+import "package:flutter/material.dart";
+import "package:flutter_dialogs/src/popup_data.dart";
+import "package:flutter_dialogs/src/popup_parent.dart";
 
 class PopUpService {
   static PopUpService? _instance;

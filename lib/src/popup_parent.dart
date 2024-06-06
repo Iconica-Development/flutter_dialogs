@@ -2,12 +2,12 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'dart:collection';
+import "dart:collection";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_dialogs/src/popup.dart';
-import 'package:flutter_dialogs/src/popup_data.dart';
-import 'package:flutter_dialogs/src/popup_service.dart';
+import "package:flutter/material.dart";
+import "package:flutter_dialogs/src/popup.dart";
+import "package:flutter_dialogs/src/popup_data.dart";
+import "package:flutter_dialogs/src/popup_service.dart";
 
 class PopUpParent extends StatefulWidget {
   const PopUpParent({required this.child, super.key});
