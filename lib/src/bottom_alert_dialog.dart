@@ -12,8 +12,14 @@ class BottomAlertDialogAction extends StatelessWidget {
     this.buttonType = ButtonType.tertiary,
     super.key,
   });
+
+  /// The text to be displayed on the button.
   final String text;
+
+  /// The type of button to be displayed.
   final ButtonType buttonType;
+
+  /// The callback to be called when the button is pressed.
   final VoidCallback onPressed;
 
   @override
@@ -41,11 +47,13 @@ class BottomAlertDialog extends StatelessWidget {
     required List<Widget> buttons,
     List<BottomAlertDialogAction>? actions,
     bool? closeButton,
+    bool? useSafeAreaPadding,
   }) =>
       BottomAlertDialog._(
         closeButton: closeButton,
         buttons: buttons,
         actions: actions,
+        useSafeAreaPadding: useSafeAreaPadding ?? true,
         body: (_) => body,
       );
 
@@ -57,12 +65,14 @@ class BottomAlertDialog extends StatelessWidget {
     required VoidCallback onPressed,
     ButtonType buttonType = ButtonType.tertiary,
     bool? closeButton,
+    bool? useSafeAreaPadding,
   }) =>
       BottomAlertDialog.icon(
         closeButton: closeButton,
         title: title,
         icon: icon,
         body: body,
+        useSafeAreaPadding: useSafeAreaPadding,
         buttons: [
           BottomAlertDialogAction(
             text: buttonText,
@@ -81,12 +91,14 @@ class BottomAlertDialog extends StatelessWidget {
     bool focusYes = true,
     bool otherSecondary = false,
     bool? closeButton,
+    bool? useSafeAreaPadding,
   }) =>
       BottomAlertDialog.icon(
         closeButton: closeButton,
         title: title,
         body: body,
         icon: icon,
+        useSafeAreaPadding: useSafeAreaPadding,
         buttons: _getYesNoDialogButtons(focusYes, otherSecondary, onYes, onNo),
       );
 
@@ -98,12 +110,14 @@ class BottomAlertDialog extends StatelessWidget {
     bool focusYes = true,
     bool otherSecondary = false,
     bool? closeButton,
+    bool? useSafeAreaPadding,
   }) =>
       BottomAlertDialog.multiButton(
         closeButton: closeButton,
         title: title,
         body: body,
         buttons: const [],
+        useSafeAreaPadding: useSafeAreaPadding,
         actions: _getYesNoDialogButtons(focusYes, otherSecondary, onYes, onNo),
       );
 
@@ -114,11 +128,13 @@ class BottomAlertDialog extends StatelessWidget {
     required List<Widget> buttons,
     List<BottomAlertDialogAction>? actions,
     bool? closeButton,
+    bool? useSafeAreaPadding,
   }) =>
       BottomAlertDialog._(
         closeButton: closeButton,
         buttons: buttons,
         actions: actions,
+        useSafeAreaPadding: useSafeAreaPadding ?? true,
         body: (context) => Column(
           children: [
             icon,
@@ -140,11 +156,13 @@ class BottomAlertDialog extends StatelessWidget {
     required List<BottomAlertDialogAction> buttons,
     List<BottomAlertDialogAction>? actions,
     bool? closeButton,
+    bool? useSafeAreaPadding,
   }) =>
       BottomAlertDialog._(
         closeButton: closeButton,
         buttons: buttons,
         actions: actions,
+        useSafeAreaPadding: useSafeAreaPadding ?? true,
         body: (context) => Column(
           children: [
             Padding(
@@ -167,11 +185,13 @@ class BottomAlertDialog extends StatelessWidget {
     required VoidCallback onPressed,
     ButtonType buttonType = ButtonType.tertiary,
     bool? closeButton,
+    bool? useSafeAreaPadding,
   }) =>
       BottomAlertDialog.multiButton(
         closeButton: closeButton,
         title: title,
         body: body,
+        useSafeAreaPadding: useSafeAreaPadding,
         buttons: [
           BottomAlertDialogAction(
             text: buttonText,
@@ -180,16 +200,28 @@ class BottomAlertDialog extends StatelessWidget {
           ),
         ],
       );
+
   const BottomAlertDialog._({
     required this.buttons,
     required this.body,
+    this.useSafeAreaPadding = true,
     this.actions,
     this.closeButton = false,
   });
   final List<Widget> buttons;
+
+  /// The body of the dialog.
   final WidgetBuilder body;
+
+  /// Whether to show a close button in the top right corner of the dialog.
   final bool? closeButton;
+
   final List<BottomAlertDialogAction>? actions;
+
+  /// This adds a padding at the bottom of the dialog to account for the
+  ///  safearea padding. Set this to false if you don't want the extra padding,
+  ///  it is enabled by default.
+  final bool useSafeAreaPadding;
 
   static List<BottomAlertDialogAction> _getYesNoDialogButtons(
     bool focusYes,
@@ -233,7 +265,10 @@ class BottomAlertDialog extends StatelessWidget {
         const Spacer(),
         AlertDialog(
           insetPadding: EdgeInsets.zero,
-          contentPadding: EdgeInsets.zero,
+          contentPadding: EdgeInsets.only(
+            bottom:
+                useSafeAreaPadding ? MediaQuery.of(context).padding.bottom : 0,
+          ),
           backgroundColor:
               config.backgroundColor ?? Theme.of(context).cardColor,
           shape: const RoundedRectangleBorder(
