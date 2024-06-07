@@ -54,9 +54,9 @@ class BottomAlertDialogConfig extends InheritedWidget {
             return ElevatedButton(
               style: ButtonStyle(
                 backgroundColor:
-                    WidgetStateProperty.all(theme.colorScheme.primary),
-                foregroundColor: WidgetStateProperty.all(Colors.black),
-                shape: WidgetStateProperty.all(
+                    MaterialStateProperty.all(theme.colorScheme.primary),
+                foregroundColor: MaterialStateProperty.all(Colors.black),
+                shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                     side: BorderSide(color: theme.colorScheme.primary),
@@ -69,9 +69,9 @@ class BottomAlertDialogConfig extends InheritedWidget {
           case ButtonType.secondary:
             return ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.white),
-                foregroundColor: WidgetStateProperty.all(Colors.black),
-                shape: WidgetStateProperty.all(
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                foregroundColor: MaterialStateProperty.all(Colors.black),
+                shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                     side: BorderSide(color: theme.colorScheme.primary),
@@ -84,10 +84,10 @@ class BottomAlertDialogConfig extends InheritedWidget {
           case ButtonType.tertiary:
             return ElevatedButton(
               style: ButtonStyle(
-                shadowColor: WidgetStateProperty.all(Colors.transparent),
-                backgroundColor: WidgetStateProperty.all(Colors.white),
-                foregroundColor: WidgetStateProperty.all(Colors.black),
-                shape: WidgetStateProperty.all(
+                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                foregroundColor: MaterialStateProperty.all(Colors.black),
+                shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                     side: const BorderSide(color: Colors.white),
