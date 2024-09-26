@@ -29,6 +29,7 @@ class BottomAlertDialogConfig extends InheritedWidget {
     CloseButtonBuilder? closeButtonBuilder,
     this.yesText = "Yes",
     this.noText = "No",
+    this.bottomAlertDialogPadding = const EdgeInsets.only(top: 10),
     this.backgroundColor,
     super.key,
   })  : _buttonBuilder = buttonBuilder,
@@ -38,6 +39,10 @@ class BottomAlertDialogConfig extends InheritedWidget {
   final CloseButtonBuilder? _closeButtonBuilder;
   final String yesText;
   final String noText;
+
+  /// The padding that is put between the top of the dialog and the content.
+  /// This is by default const EdgeInsets.only(top:10).
+  final EdgeInsets bottomAlertDialogPadding;
   final Color? backgroundColor;
 
   ButtonBuilder get buttonBuilder =>

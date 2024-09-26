@@ -282,7 +282,7 @@ class BottomAlertDialog extends StatelessWidget {
             child: Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: config.bottomAlertDialogPadding,
                   child: Align(
                     alignment: Alignment.center,
                     child: Column(
